@@ -36,6 +36,7 @@
 	  socket.onmessage = (event) => {
 		try {
 		  availableItems = JSON.parse(event.data);
+		  console.log(event.data);
 		} catch (error) {
 		  console.error('Error parsing WebSocket data:', error, event.data);
 		}
@@ -52,8 +53,8 @@
 	}
   
 	onMount(() => {
+		setupWebSocket();
 	  handleBuyItem('tipp1');
-	  setupWebSocket();
 	});
   </script>
   
