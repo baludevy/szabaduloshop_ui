@@ -10,9 +10,11 @@
 	let availableItems: Item[] = [];
 	let socket: WebSocket;
 
+	let api_url = import.meta.env.VITE_API_URL;
+
 	async function handleBuyItem(itemName: string) {
 		try {
-			const response = await fetch('/api/buy/', {
+			const response = await fetch(`${api_url}/buy/`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
@@ -29,7 +31,7 @@
 
 	function setupWebSocket() {
 		const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-		const wsUrl = `${protocol}//${window.location.host}/api/ws/`;
+		const wsUrl = `${api_url.replace('http', protocol)}/ws/`;
 
 		socket = new WebSocket(wsUrl);
 
